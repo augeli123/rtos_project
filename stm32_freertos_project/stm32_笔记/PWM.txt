@@ -1,0 +1,181 @@
+PWM
+
+#define LED_OFF GPIO_SetBits(GPIOC,GPIO_Pin_13)
+#define LED_ON GPIO_ResetBits(GPIOC,GPIO_Pin_13)
+void led_init();
+void uart_init();
+void pwm_init();
+void TIM2_PWMMode(u16 CCR1_Val,u16 CCR2_Val,u16 CCR3_Val,u16 CCR4_Val);
+void uart_putchar(u8 ch)
+{
+    USART_SendData(USART1,ch);
+    while(USART_GetFlagStatus(USART1,USART_FLAG_TXE)==RESET)
+        ;
+}
+void Delay()
+{
+    for(u32 i=0;i<0xfffff;i++)
+        ;
+}
+int main(void)
+{
+    led_init();
+    uart_init();
+           //清除标志位，否则第1位数据会丢失
+    pwm_init();
+    USART_ClearFlag(USART1,USART_FLAG_TC);
+    uart_putchar(0x34);
+    TIM2_PWMMode(2000,1000,2000,1000);
+  while(1)
+  {
+        LED_ON;
+        Delay();
+        LED_OFF;
+
+        Delay();
+        Delay();
+
+  }
+}
+void pwm_init()
+{
+    GPIO_InitTypeDef GPIO_InitStructure;
+    TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
+
+
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4,ENABLE);
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB , ENABLE);
+
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6|GPIO_Pin_7|GPIO_Pin_8|GPIO_Pin_9; //TIM_CH1
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+	
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOB, &GPIO_InitStructure);
+ /*
+    => TIM3CLK = HCLK / 2 = SystemCoreClock /2
+    To get TIM3 counter clock at 21 MHz, the prescaler is computed as follows:
+       Prescaler = (TIM3CLK / TIM3 counter clock) - 1
+       Prescaler = ((SystemCoreClock /2) /21 MHz) - 1  ==>stm32f4
+        Prescaler = ((SystemCoreClock ) /21 MHz) - 1  ==>stm32f10x
+
+    To get TIM3 output clock at 30 KHz, the period (ARR)) is computed as follows:
+       Period = (TIM3 counter clock / TIM3 output clock) - 1
+
+    TIM3 Channel1 duty cycle = (TIM3_CCR1/ TIM3_ARR)* 100 = 50%
+    TIM3 Channel2 duty cycle = (TIM3_CCR2/ TIM3_ARR)* 100 = 37.5%
+    TIM3 Channel3 duty cycle = (TIM3_CCR3/ TIM3_ARR)* 100 = 25%
+    TIM3 Channel4 duty cycle = (TIM3_CCR4/ TIM3_ARR)* 100 = 12.5%
+
+ */
+  TIM_TimeBaseStructure.TIM_Period = 7999;//8000000/（7999+1）==1000hz
+  TIM_TimeBaseStructure.TIM_Prescaler =  (SystemCoreClock /8000000) - 1;
+  TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+  TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+  TIM_TimeBaseInit(TIM4, &TIM_TimeBaseStructure);
+  TIM_ARRPreloadConfig(TIM4, ENABLE);
+
+
+
+}
+void TIM2_PWMMode(u16 CCR1_Val,u16 CCR2_Val,u16 CCR3_Val,u16 CCR4_Val)
+{
+ TIM_OCInitTypeDef  TIM_OCInitStructure;
+ /* PWM1 Mode configuration: Channel1 */
+  TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+  TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+  TIM_OCInitStructure.TIM_Pulse = CCR1_Val;
+  TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
+
+  TIM_OC1Init(TIM4, &TIM_OCInitStructure);
+
+  TIM_OC1PreloadConfig(TIM4, TIM_OCPreload_Enable);
+
+  /* PWM1 Mode configuration: Channel2 */
+  TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+  TIM_OCInitStructure.TIM_Pulse = CCR2_Val;
+
+  TIM_OC2Init(TIM4, &TIM_OCInitStructure);
+
+  TIM_OC2PreloadConfig(TIM4, TIM_OCPreload_Enable);
+
+  /* PWM1 Mode configuration: Channel3 */
+  TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+  TIM_OCInitStructure.TIM_Pulse = CCR3_Val;
+
+  TIM_OC3Init(TIM4, &TIM_OCInitStructure);
+
+  TIM_OC3PreloadConfig(TIM4, TIM_OCPreload_Enable);
+
+  /* PWM1 Mode configuration: Channel4 */
+  TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+  TIM_OCInitStructure.TIM_Pulse = CCR4_Val;
+
+  TIM_OC4Init(TIM4, &TIM_OCInitStructure);
+
+  TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Enable);
+
+  TIM_ARRPreloadConfig(TIM4, ENABLE);
+
+  /* TIM3 enable counter */
+  TIM_Cmd(TIM4, ENABLE);
+}
+void uart_init()
+{
+    GPIO_InitTypeDef GPIO_InitStructure;
+    USART_InitTypeDef USART_InitStructure;
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1 | RCC_APB2Periph_GPIOA, ENABLE);
+
+    GPIO_InitStructure.GPIO_Pin=GPIO_Pin_9;
+    GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AF_PP;
+    GPIO_Init(GPIOA,&GPIO_InitStructure);
+
+    GPIO_InitStructure.GPIO_Pin=GPIO_Pin_10;
+    GPIO_InitStructure.GPIO_Mode=GPIO_Mode_IN_FLOATING;
+    GPIO_Init(GPIOA,&GPIO_InitStructure);
+
+    USART_InitStructure.USART_BaudRate=9600; //波特率
+    USART_InitStructure.USART_WordLength=USART_WordLength_8b; //数据位数
+    USART_InitStructure.USART_StopBits=USART_StopBits_1; //停止位
+    USART_InitStructure.USART_Parity=USART_Parity_No; //无奇偶校验
+    USART_InitStructure.USART_HardwareFlowControl=USART_HardwareFlowControl_None;
+    //无硬件流控制
+    USART_InitStructure.USART_Mode=USART_Mode_Tx|USART_Mode_Rx;
+    //收发均使能
+    USART_Init(USART1,&USART_InitStructure);
+
+    USART_ITConfig(USART1,USART_IT_RXNE,ENABLE);
+    USART_Cmd(USART1,ENABLE);
+
+    NVIC_InitTypeDef NVIC_InitStructure;
+    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2 );
+    NVIC_InitStructure.NVIC_IRQChannel=USART1_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=1;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority=0;
+    NVIC_InitStructure.NVIC_IRQChannelCmd=ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+
+}
+void led_init()
+{
+      RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA| RCC_APB2Periph_GPIOB|
+                         RCC_APB2Periph_GPIOC | RCC_APB2Periph_GPIOD|
+                         RCC_APB2Periph_GPIOE,ENABLE);
+  GPIO_InitTypeDef GPIO_InitStructure;
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_10MHz;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+  GPIO_SetBits(GPIOC, GPIO_Pin_13 );
+}
+
+void USART1_IRQHandler(void)
+{
+   if(USART_GetITStatus(USART1,USART_IT_RXNE)==SET)
+   {
+        USART_ClearITPendingBit(USART1, USART_IT_RXNE);
+       LED_OFF;
+       uart_putchar(USART_ReceiveData(USART1));
+       LED_ON;
+   }
+}

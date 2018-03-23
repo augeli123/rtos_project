@@ -1,0 +1,277 @@
+1、
+   第一个版本的PWM,只简单的做了功能的打开，未考虑函数的可重用性
+
+void pwm12_init(void);
+void pwm34_init(void);
+void TIM1_PWM_ReConfig(uint16_t arr, uint16_t ccr4_val);
+void TIM3_PWM_ReConfig(uint16_t arr, uint16_t ccr4_val);
+void TIM4_PWM_ReConfig(uint16_t arr, uint16_t ccr4_val);
+
+void pwm12_init(void)
+{
+	GPIO_InitTypeDef GPIO_InitStructure;
+	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
+
+
+
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, ENABLE);//TIM1挂在APB2上
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3 | GPIO_Pin_11; //TIM_CH4
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
+	/*
+	=> TIM3CLK = HCLK / 2 = SystemCoreClock /2
+	To get TIM3 counter clock at 21 MHz, the prescaler is computed as follows:
+	Prescaler = (TIM3CLK / TIM3 counter clock) - 1
+	Prescaler = ((SystemCoreClock /2) /21 MHz) - 1  ==>stm32f4
+	Prescaler = ((SystemCoreClock ) /21 MHz) - 1  ==>stm32f10x
+
+	To get TIM3 output clock at 30 KHz, the period (ARR)) is computed as follows:
+	Period = (TIM3 counter clock / TIM3 output clock) - 1
+
+	TIM3 Channel1 duty cycle = (TIM3_CCR1/ TIM3_ARR)* 100 = 50%
+	TIM3 Channel2 duty cycle = (TIM3_CCR2/ TIM3_ARR)* 100 = 37.5%
+	TIM3 Channel3 duty cycle = (TIM3_CCR3/ TIM3_ARR)* 100 = 25%
+	TIM3 Channel4 duty cycle = (TIM3_CCR4/ TIM3_ARR)* 100 = 12.5%
+
+	*/
+	TIM_TimeBaseStructure.TIM_Period = 7999;//8000000/（7999+1）==1000hz
+	TIM_TimeBaseStructure.TIM_Prescaler = (SystemCoreClock / 8000000) - 1;
+	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+	TIM_TimeBaseInit(TIM1, &TIM_TimeBaseStructure);
+	TIM_ARRPreloadConfig(TIM1, ENABLE);
+
+	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
+	TIM_ARRPreloadConfig(TIM2, ENABLE);
+	TIM_OCInitTypeDef  TIM_OCInitStructure;
+
+	TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+	TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_Low;
+
+
+	/* PWM1 Mode configuration: Channel4 */
+	TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+	TIM_OCInitStructure.TIM_Pulse = 4000;  //50%
+
+	TIM_OC4Init(TIM1, &TIM_OCInitStructure);
+
+	TIM_OC4PreloadConfig(TIM1, TIM_OCPreload_Enable);
+
+	TIM_ARRPreloadConfig(TIM1, ENABLE);
+
+	TIM_OC4Init(TIM2, &TIM_OCInitStructure);
+	TIM_OC4PreloadConfig(TIM2, TIM_OCPreload_Enable);
+	TIM_ARRPreloadConfig(TIM2, ENABLE);
+
+	/* TIM3 enable counter */
+	TIM_Cmd(TIM1, ENABLE);
+	TIM_Cmd(TIM2, ENABLE);
+	TIM_CtrlPWMOutputs(TIM1, ENABLE);	//定时器1、8专用
+
+}
+void pwm34_init(void)
+{
+	GPIO_InitTypeDef GPIO_InitStructure;
+	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
+
+
+
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_1; //TIM_CH4
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOB, &GPIO_InitStructure);
+	/*
+	=> TIM3CLK = HCLK / 2 = SystemCoreClock /2
+	To get TIM3 counter clock at 21 MHz, the prescaler is computed as follows:
+	Prescaler = (TIM3CLK / TIM3 counter clock) - 1
+	Prescaler = ((SystemCoreClock /2) /21 MHz) - 1  ==>stm32f4
+	Prescaler = ((SystemCoreClock ) /21 MHz) - 1  ==>stm32f10x
+
+	To get TIM3 output clock at 30 KHz, the period (ARR)) is computed as follows:
+	Period = (TIM3 counter clock / TIM3 output clock) - 1
+
+	TIM3 Channel1 duty cycle = (TIM3_CCR1/ TIM3_ARR)* 100 = 50%
+	TIM3 Channel2 duty cycle = (TIM3_CCR2/ TIM3_ARR)* 100 = 37.5%
+	TIM3 Channel3 duty cycle = (TIM3_CCR3/ TIM3_ARR)* 100 = 25%
+	TIM3 Channel4 duty cycle = (TIM3_CCR4/ TIM3_ARR)* 100 = 12.5%
+
+	*/
+	TIM_TimeBaseStructure.TIM_Period = 7999;//8000000/（7999+1）==1000hz
+	TIM_TimeBaseStructure.TIM_Prescaler = (SystemCoreClock / 8000000) - 1;
+	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+	TIM_TimeBaseInit(TIM4, &TIM_TimeBaseStructure);
+	TIM_ARRPreloadConfig(TIM4, ENABLE);
+
+	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+	TIM_ARRPreloadConfig(TIM3, ENABLE);
+	TIM_OCInitTypeDef  TIM_OCInitStructure;
+
+	TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+	TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_Low;
+
+
+	/* PWM1 Mode configuration: Channel4 */
+	TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+	TIM_OCInitStructure.TIM_Pulse = 4000;  //50%
+
+	TIM_OC4Init(TIM4, &TIM_OCInitStructure);
+
+	TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Enable);
+
+	TIM_ARRPreloadConfig(TIM4, ENABLE);
+
+	TIM_OC4Init(TIM3, &TIM_OCInitStructure);
+	TIM_OC4PreloadConfig(TIM3, TIM_OCPreload_Enable);
+	TIM_ARRPreloadConfig(TIM3, ENABLE);
+
+	/* TIM3 enable counter */
+	TIM_Cmd(TIM4, ENABLE);
+	TIM_Cmd(TIM3, ENABLE);
+
+}
+void TIM1_PWM_ReConfig(uint16_t arr, uint16_t ccr4_val)
+{
+	/*
+	=> TIM3CLK = HCLK / 2 = SystemCoreClock /2
+	To get TIM3 counter clock at 21 MHz, the prescaler is computed as follows:
+	Prescaler = (TIM3CLK / TIM3 counter clock) - 1
+	Prescaler = ((SystemCoreClock /2) /21 MHz) - 1  ==>stm32f4
+	Prescaler = ((SystemCoreClock ) /21 MHz) - 1  ==>stm32f10x
+
+	To get TIM3 output clock at 30 KHz, the period (ARR)) is computed as follows:
+	Period = (TIM3 counter clock / TIM3 output clock) - 1
+
+	TIM3 Channel1 duty cycle = (TIM3_CCR1/ TIM3_ARR)* 100 = 50%
+	TIM3 Channel2 duty cycle = (TIM3_CCR2/ TIM3_ARR)* 100 = 37.5%
+	TIM3 Channel3 duty cycle = (TIM3_CCR3/ TIM3_ARR)* 100 = 25%
+	TIM3 Channel4 duty cycle = (TIM3_CCR4/ TIM3_ARR)* 100 = 12.5%
+
+	*/
+	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
+	TIM_TimeBaseStructure.TIM_Period = arr;//8000000/（arr+1）==_?_hz
+	TIM_TimeBaseStructure.TIM_Prescaler = (SystemCoreClock / 8000000) - 1;
+	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+	TIM_TimeBaseInit(TIM1, &TIM_TimeBaseStructure);
+	TIM_ARRPreloadConfig(TIM1, ENABLE);
+
+	TIM_OCInitTypeDef  TIM_OCInitStructure;
+	/* PWM1 Mode configuration: Channel4 */
+	TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+	TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+	//#########################################################//
+
+	TIM_OCInitStructure.TIM_Pulse = ccr4_val;
+	TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
+
+	TIM_OC4Init(TIM1, &TIM_OCInitStructure);
+
+	TIM_OC4PreloadConfig(TIM1, TIM_OCPreload_Enable);
+
+	TIM_ARRPreloadConfig(TIM1, ENABLE);
+	/* TIM4 enable counter */
+	TIM_Cmd(TIM1, ENABLE);
+
+
+}
+void TIM3_PWM_ReConfig(uint16_t arr, uint16_t ccr4_val)
+{
+	/*
+	=> TIM3CLK = HCLK / 2 = SystemCoreClock /2
+	To get TIM3 counter clock at 21 MHz, the prescaler is computed as follows:
+	Prescaler = (TIM3CLK / TIM3 counter clock) - 1
+	Prescaler = ((SystemCoreClock /2) /21 MHz) - 1  ==>stm32f4
+	Prescaler = ((SystemCoreClock ) /21 MHz) - 1  ==>stm32f10x
+
+	To get TIM3 output clock at 30 KHz, the period (ARR)) is computed as follows:
+	Period = (TIM3 counter clock / TIM3 output clock) - 1
+
+	TIM3 Channel1 duty cycle = (TIM3_CCR1/ TIM3_ARR)* 100 = 50%
+	TIM3 Channel2 duty cycle = (TIM3_CCR2/ TIM3_ARR)* 100 = 37.5%
+	TIM3 Channel3 duty cycle = (TIM3_CCR3/ TIM3_ARR)* 100 = 25%
+	TIM3 Channel4 duty cycle = (TIM3_CCR4/ TIM3_ARR)* 100 = 12.5%
+
+	*/
+	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
+	TIM_TimeBaseStructure.TIM_Period = arr;//8000000/（arr+1）==_?_hz
+	TIM_TimeBaseStructure.TIM_Prescaler = (SystemCoreClock / 8000000) - 1;
+	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+	TIM_ARRPreloadConfig(TIM3, ENABLE);
+
+	TIM_OCInitTypeDef  TIM_OCInitStructure;
+	/* PWM1 Mode configuration: Channel4 */
+	TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+	TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+	//#########################################################//
+
+	TIM_OCInitStructure.TIM_Pulse = ccr4_val;
+	TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
+
+	TIM_OC4Init(TIM3, &TIM_OCInitStructure);
+
+	TIM_OC4PreloadConfig(TIM3, TIM_OCPreload_Enable);
+
+	TIM_ARRPreloadConfig(TIM3, ENABLE);
+	/* TIM4 enable counter */
+	TIM_Cmd(TIM3, ENABLE);
+
+
+}
+void TIM4_PWM_ReConfig(uint16_t arr, uint16_t ccr4_val)
+{
+	/*
+	=> TIM3CLK = HCLK / 2 = SystemCoreClock /2
+	To get TIM3 counter clock at 21 MHz, the prescaler is computed as follows:
+	Prescaler = (TIM3CLK / TIM3 counter clock) - 1
+	Prescaler = ((SystemCoreClock /2) /21 MHz) - 1  ==>stm32f4
+	Prescaler = ((SystemCoreClock ) /21 MHz) - 1  ==>stm32f10x
+
+	To get TIM3 output clock at 30 KHz, the period (ARR)) is computed as follows:
+	Period = (TIM3 counter clock / TIM3 output clock) - 1
+
+	TIM3 Channel1 duty cycle = (TIM3_CCR1/ TIM3_ARR)* 100 = 50%
+	TIM3 Channel2 duty cycle = (TIM3_CCR2/ TIM3_ARR)* 100 = 37.5%
+	TIM3 Channel3 duty cycle = (TIM3_CCR3/ TIM3_ARR)* 100 = 25%
+	TIM3 Channel4 duty cycle = (TIM3_CCR4/ TIM3_ARR)* 100 = 12.5%
+
+	*/
+	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
+	TIM_TimeBaseStructure.TIM_Period = arr;//8000000/（arr+1）==_?_hz
+	TIM_TimeBaseStructure.TIM_Prescaler = (SystemCoreClock / 8000000) - 1;
+	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+	TIM_TimeBaseInit(TIM4, &TIM_TimeBaseStructure);
+	TIM_ARRPreloadConfig(TIM4, ENABLE);
+
+	TIM_OCInitTypeDef  TIM_OCInitStructure;
+	/* PWM1 Mode configuration: Channel4 */
+	TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+	TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+	//#########################################################//
+
+	TIM_OCInitStructure.TIM_Pulse = ccr4_val;
+	TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
+
+	TIM_OC4Init(TIM4, &TIM_OCInitStructure);
+
+	TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Enable);
+
+	TIM_ARRPreloadConfig(TIM4, ENABLE);
+	/* TIM4 enable counter */
+	TIM_Cmd(TIM4, ENABLE);
+
+
+}

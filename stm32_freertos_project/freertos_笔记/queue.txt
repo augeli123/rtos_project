@@ -1,0 +1,24 @@
+注意事项：
+    向队列中读写时，如果阻塞时间内无数据，则执行接下来的代码
+函数：
+########################################################################
+QueueHandle_t xQueueCreate(UBaseType_t uxQueueLength,UBaseType_t uxItemSize)
+
+BaseType_t xQueueSend(QueueHandle_t xQueue,
+			const void * pvItemToQueue,
+			TickType_t xTicksToWait)
+BaseType_t xQueueSendFromISR(QueueHandle_t xQueue,
+			const void * pvItemToQueue,
+			BaseType_t* pxHigherPriorityTaskWoken)
+  注意：pxHigherPriorityTaskWoken用于标记退出此函数后是否进行任务切换，这个变量
+  用户只需要提供值来保存。
+BaseType_t xQueueReceive(QueueHandle_t xQueue,
+			void* pvBuffer,
+			TickType_t xTicksToWait)
+   注意：该函数用于从队列中读取队列项，读取完成后会删除。
+########################################################################
+检查队列长度：
+   u8 msgq_remain_size;	//消息队列剩余大小
+    u8 msgq_total_size; //消息队列总大小 
+    msgq_remain_size=uxQueueSpacesAvailable(Message_Queue);//得到队列剩余大小
+    msgq_total_size=uxQueueMessagesWaiting(Message_Queue)+uxQueueSpacesAvailable(Message_Queue);//得到队列总大小，总大小=使用+剩余的。

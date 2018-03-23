@@ -1,0 +1,95 @@
+1、GPIO的寄存器
+32位配置寄存器：（GPIOx_CRL、GPIOx_CRH）
+32位数据寄存器： (GPIOx_IDR、GPIOx_ODR)
+32位置位复位寄存器：（GPIOx_BSRR）
+16位复位：（GPIOx_BRR）
+
+2、GPIO库函数
+##########################################################################
+void GPIO_Init(GPIO_InitTypeDef *GPIOx,GPIO_InitTypeDef * GPIO_InitStruct)
+typedef struct
+{
+    u16 GPIO_Pin;
+    GPIOSpeed_TypeDef GPIO_Speed;
+    GPIOMode_TypeDef GPIO_Mode;
+}GPIO_InitTypeDef;
+使用：
+    GPIO_InitTypeDef GPIO_InitStructure;
+    GPIO_InitStructure.GPIO_Pin=GPIO_Pin_0|GPIO_Pin_1|GPIO_Pin_6;
+    GPIO_InitStructure.GPIO_Speed=GPIO_Speed_10MHz;
+    GPIO_InitStructure.GPIO_Mode=GPIO_Mode_Out_PP;
+    GPIO_Init(GPIOA,&GPIO_InitStructure);
+##########################################################################
+void GPIO_SetBits(GPIO_TypeDef *GPIOx,u16 GPIO_Pin)
+void GPIO_ResetBits(GPIO_TypeDef * GPIOx,u16 GPIO_Pin)
+使用：
+   GPIO_SetBits(GPIOA,GPIO_Pin_0|GPIO_Pin_1|GPIO_Pin_6);
+   GPIO_ResetBits(GPIOA,GPIO_Pin_0|GPIO_Pin_1|GPIO_Pin_6);
+##########################################################################
+void GPIO_WriteBit(GPIO_TypeDef * GPIOx,u16 GPIO_Pin,BitAction BitVal)
+使用：
+    GPIO_WriteBit(GPIOE,GPIO_Pin_6,Bit_SET);
+    GPIO_WriteBit(GPIOE,GPIO_Pin_6,Bit_RESET);
+##########################################################################
+void GPIO_Write(GPIO_TypeDef* GPIOx,u16 PortVal)
+使用：
+    GPIO_Write(GPIOC,0x3A4B)
+##########################################################################
+u8 GPIO_ReadOutputDataBit(GPIO_TypeDef* GPIOx,u16 GPIO_Pin)
+使用：
+    u8 ReadValue;
+    ReadValue=GPIO_ReadOutputDataBit(GPIOB,GPIO_Pin_14);
+
+u16 GPIO_ReadOutputData(GPIO_TypeDef *GPIOx)
+使用：
+    u16 ReadValue;
+    ReadValue=GPIO_ReadOutputData(GPIOE);
+##########################################################################
+u8 GPIO_ReadInputDataBit(GPIO_TypeDef* GPIOx,u16 GPIO_Pin)
+u8 ReadValue;
+ReadValue=GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_7);
+
+u16 GPIO_ReadInputData(GPIO_TypeDef* GPIOx)
+u16 ReadValue;
+ReadValue=GPIO_ReadInputData(GPIOE);
+##########################################################################
+ 
+3、位操作
+4字节数据转化位32位数据
+Temp=(((unsigned long)a1)<<24)|(((unsigned long)a2)<<16)|(((unsigned long)a3)<<8)|(((unsigned long)a4));
+
+
+led_test
+#define LED_ON GPIO_SetBits(GPIOC,GPIO_Pin_13)
+#define LED_OFF GPIO_ResetBits(GPIOC,GPIO_Pin_13)
+
+void led_init();
+void Delay()
+{
+    for(u32 i=0;i<0xfffff;i++)
+        ;
+}
+int main(void)
+{
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA| RCC_APB2Periph_GPIOB|
+                         RCC_APB2Periph_GPIOC | RCC_APB2Periph_GPIOD|
+                         RCC_APB2Periph_GPIOE,ENABLE);
+
+  led_init();
+  while(1)
+  {
+    LED_OFF;
+    Delay();
+    LED_ON;
+    Delay();
+  }
+}
+void led_init()
+{
+  GPIO_InitTypeDef GPIO_InitStructure;
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_10MHz;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+  GPIO_SetBits(GPIOC, GPIO_Pin_13 );
+}
