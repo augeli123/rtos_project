@@ -1,0 +1,50 @@
+mavros commander控制飞机与mavlink的移植
+
+mavros commander控制飞机主要涉及仿真平台的使用
+http://blog.csdn.net/oqqENvY12/article/details/55263122
+
+
+启动仿真器
+make posix_sitl_default jmavsim （&gazebo）
+
+roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
+
+
+一个很值得了解的资源
+    EEDrone
+http://bbs.eeworld.com.cn/search.php?mod=forum&searchid=469159&orderby=lastpost&ascdesc=desc&searchsubmit=yes&kw=EEDrone
+logic89 登陆电子工程
+
+仿真可以takeoff,实际测试并不能解锁电机
+mavlink的移植相关
+1、c_uart_interface_example
+https://github.com/mavlink/c_uart_interface_example
+2、c_library_v2
+https://github.com/mavlink/c_library_v2
+3、c_library_v1
+https://github.com/mavlink/c_library_v1
+
+解锁电机的要求：
+设置不需要gps的模式飞行，定高
+设置gps模式下的飞行
+这些模式与什么有关系？mavlink里的哪些message可以用来控制？
+offboard模式的控制流程分析
+http://blog.csdn.net/xiaochengyexiao/article/details/70551203
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+对于GPS
+使用数据信号质量作为评判标准。检查 vehicle_gps_position
+
+对于uORB通信机制    (wiki4.2)
+1、在Firmware/src/examples/px4_simple_app下，创建一个新的C语言文件px4_simple_app.c。\
+2、在NuttShell中注册应用程序，然后编译。
+          Pixhawk v1/2: Firmware/cmake/configs/nuttx_px4fmu-v2_default.cmake
+3、编译它：
+
+Pixhawk v1/2: make px4fmu-v2_default
+Pixhawk v3: make px4fmu-v4_default\
+4、上传并且测试应用程序
+Pixhawk v1/2: make px4fmu-v2_default upload
+Pixhawk v3: make px4fmu-v4_default upload
+
+
+对于Gazebo仿真    (wiki 5.4)
+四旋翼
+
+cd ~/src/Firmware
+make posix_sitl_default gazebo
+标准垂直起降飞机
+
+make posix_sitl_default gazebo_standard_vtol
+标准垂直起降飞机
+
+make posix gazebo_rover
+起飞：
+
+pxh> commander takeoff
+
+
+对于mavros
+二进制安装
+$ sudo apt-get install ros-indigo-mavros ros-indigo-mavros-extras ros‐indigo‐control‐toolbox
+
+需要解决的事：
+mavros下的编程获取数据
+操作控制台（命令） Sensor/Topic Debugging
+uORB中的详细操作
+加mavlink消息机制
+
+
+

@@ -1,0 +1,21 @@
+问题定位到了为什么没有进入offboard模式，怎样才能真确进入offboard模式
+网上的帖子：
+1、“飞控和计算机通过使用mavlink协议进行通信，offboard 命令一般发送位置/姿态/速度/加速度 信息给控制器执行。相应的mavlink消息主要是SET_ATTITUDE_TARGET和SET_POSITION_TARGET_LOCAL_NED”
+2、offboard模式的开发及3D仿真的应用
+“offboard模式是比较特殊的，直接使用命令来切换至offboard模式是不行的，我们需要先进行另外一个topic的发布----offboard_control_mode。
+为了保证飞行的安全性，px4决定，必须要位置最低每秒2此的频率发布offboard_control_mode topic 才能保证offboard online，这是为了安全考虑，如果机载计算机突然死机或者失去了联结，那么px4在500ms后没有收到通讯将自动切换到开启offboard之前的模式”
+”SET_POSITION_TARGET_LO CAL_NED的mavlink信息发送频率要大于2HZ，即至少0.5s要发送一次。“
+总结： 1、 在单线程的serial_port control中，不好设置mavlink信息的发送频率 ,artopilot_interface里开有读写线程4hz，所以排除发送频率的问题
+           2、并没有看到例子里用到offboard_control_mode
+offboard_control_mode.msg在px4的firmaware中，所以应该是px4固件的修改，，，在试验自己的程序的时候并没有修改pix的固件
+            3、  是使用   MAV_CMD_COMPONENT_ARM_DISARM还是用
+                   MAV_CMD_NAV_GUIDED_ENABLE，//
+                  修改固件后，并不能启动，是不是两个都需要？  已经测试，只有arm模式后可以控制
+            4、不能用usb线连接控制？，必须有gps？  default版本的固件需要gps，编译lpe版本的     
+            5、固件版本问题 ，目前已知在1.6.5版本是没有问题的      
+ronrun mavros mavros_node _fcu_url:="/dev/ttyACM0:57600"
+
+有启发的文档
+https://404warehouse.net/2015/12/20/autopilot-offboard-control-using-mavros-package-on-ros/
+https://404warehouse.net/2016/08/10/trajectory-following-with-mavros-on-raspberry-pi/Pixhawk原生固件PX4之offboard
+

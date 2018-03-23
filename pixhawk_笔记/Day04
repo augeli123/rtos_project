@@ -1,0 +1,278 @@
+mavlink一点点堆起来
+  checksum.h-->    用于计算crc
+                             Accumulate the X.25 CRC by adding one char at a time.
+  mavlink_types.h -->Macro to define packed structures
+          #define MAVLINK_MAX_PAYLOAD_LEN 255 ///定义载荷
+          #define MAVLINK_CORE_HEADER_LEN 9 ///< Length of core header (of the comm. layer)
+          #define MAVLINK_CORE_HEADER_MAVLINK1_LEN 5 ///< Length of MAVLink1 core header (of the comm. layer) 兼容mavlink1
+          #define MAVLINK_NUM_HEADER_BYTES (MAVLINK_CORE_HEADER_LEN + 1) ///< Length of all header bytes, including core and stx
+          #define MAVLINK_NUM_CHECKSUM_BYTES 2  ///定义crc校验长度
+          #define MAVLINK_NUM_NON_PAYLOAD_BYTES (MAVLINK_NUM_HEADER_BYTES + MAVLINK_NUM_CHECKSUM_BYTES)
+           #define MAVLINK_SIGNATURE_BLOCK_LEN 13  // 签名长度
+         new param参数
+
+    /**
+    * This structure is required to make the mavlink_send_xxx convenience functions
+    * work, as it tells the library what the current system and component ID are.
+    */
+    MAVPACKED(
+    typedef struct __mavlink_system {
+    uint8_t sysid; ///< Used by the MAVLink message_xx_send() convenience function
+    uint8_t compid; ///< Used by the MAVLink message_xx_send() convenience function
+    }) mavlink_system_t;
+    MAVPACKED(
+    typedef struct __mavlink_message {
+    uint16_t checksum; ///< sent at end of packet
+    uint8_t magic; ///< protocol magic marker
+    uint8_t len; ///< Length of payload
+    uint8_t incompat_flags; ///< flags that must be understood
+    uint8_t compat_flags; ///< flags that can be ignored if not understood
+    uint8_t seq; ///< Sequence of packet
+    uint8_t sysid; ///< ID of message sender system/aircraft
+    uint8_t compid; ///< ID of the message sender component
+    uint32_t msgid:24; ///< ID of message in payload
+    uint64_t payload64[(MAVLINK_MAX_PAYLOAD_LEN+MAVLINK_NUM_CHECKSUM_BYTES+7)/8];
+    uint8_t ck[2]; ///< incoming checksum bytes
+    uint8_t signature[MAVLINK_SIGNATURE_BLOCK_LEN];    
+    }) mavlink_message_t;
+
+mavlink_helpers.h-->调用关系 ,开始使用一些数据结构  帮助使用
+                               #include "checksum.h"
+
+            #include "mavlink_types.h"
+
+            #include "mavlink_conversions.h"
+
+            #include "mavlink_sha256.h"
+
+            mavlink_get_channel_status     //    Internal function to give access to the channel status for each channel
+
+                        mavlink_get_channel_buffer    //
+                        mavlink_sign_packet               //          create a signature block for a packet
+                        mavlink_msg_to_send_buffer //         Pack a message to send it over a serial byte stream
+                       _mavlink_send_uart                 //         用于mcu上使用
+
+mavlink_get_info.h -->                             
+
+            MAVLINK_HELPER const mavlink_message_info_t *mavlink_get_message_info(const mavlink_message_t *msg)
+
+            {
+
+            return mavlink_get_message_info_by_id(msg->msgid);
+
+            }
+
+                             mavlink_message_info_t *mavlink_get_message_info_by_id(uint32_t msgid)   //最后return the message_info struct for a message
+mavlink_conversions.h -->                 //旋转变换
+
+protocol.h  -->        用于传输数据
+
+            #include "mavlink_types.h"              
+
+
+common.h                          
+                                    MAV_AUTOPILOT      // Micro air vehicle，一些支持的飞控
+                                    MAV_TYPE                 //飞机类型 
+                                                                       MAV_TYPE_QUADROTOR=2, /* Quadrotor | */
+                                                                       MAV_TYPE_GROUND_ROVER=10, /* Ground rover | */
+
+
+                                      MAV_CMD          //定义一些控制指令，不会用
+                                      GPS_FIX_TYPE
+mavlink.h
+version.h                     定义了版本基本信息
+MESSAGE DEFINITIONS                   //定义了各种msg。
+                                mavlink_msg_actuator_control_target.h      
+                                           #define MAVLINK_MSG_ID_ACTUATOR_CONTROL_TARGET 140
+
+
+用户程序 ：
+                serial_port.cpp     -->串口初始化与读写mavlink信息的接口
+                    int read_message(mavlink_message_t &message);              
+                    int write_message(const mavlink_message_t &message); 
+               autopilot_interface.cpp   -->              
+                    void set_position(float x, float y, float z, mavlink_set_position_target_local_ned_t &sp); 
+
+                                    //Modifies a mavlink_set_position_target_local_ned_t struct with target XYZ locations
+
+        void set_velocity(float vx, float vy, float vz, mavlink_set_position_target_local_ned_t &sp);
+                                    //Modifies a mavlink_set_position_target_local_ned_t struct with target VX VY VZ
+
+        void set_acceleration(float ax, float ay, float az, mavlink_set_position_target_local_ned_t &sp);
+
+        void set_yaw(float yaw, mavlink_set_position_target_local_ned_t &sp);
+
+        void set_yaw_rate(float yaw_rate, mavlink_set_position_target_local_ned_t &sp);
+
+        void* start_autopilot_interface_read_thread(void *args);
+
+        void* start_autopilot_interface_write_thread(void *args);
+        struct Time_Stamps
+        struct Mavlink_Messages
+        class Autopilot_Interface
+        void enable_offboard_control();
+        void disable_offboard_control();
+
+                     mavlink_set_position_target_local_ned_t initial_position;
+                     void update_setpoint(mavlink_set_position_target_local_ned_t setpoint);
+
+
+                    off_board 模式分析：
+
+                toggle_offboard_control( bool flag )                                              
+
+                // Prepare command for off-board mode
+
+                mavlink_command_long_t com = { 0 };
+
+                com.target_system = system_id;
+
+                com.target_component = autopilot_id;
+
+                com.command = MAV_CMD_NAV_GUIDED_ENABLE;
+
+                com.confirmation = true;
+
+                com.param1 = (float) flag; // flag >0.5 => start, <0.5 => stop
+
+                // Encode
+                mavlink_message_t message;
+                mavlink_msg_command_long_encode(system_id, companion_id, &message, &com);
+
+                // Send the message
+                int len = serial_port->write_message(message);   //写成功就默认模式启动成功了，有点偷懒
+
+                int success = toggle_offboard_control( true );
+                关于CMD:  //涉及一些模式的配置
+
+                MAV_CMD_NAV_GUIDED_ENABLE=92, /* hand control over to an external controller |On / Off (> 0.5f on)| Empty| Empty| Empty| Empty| Empty| Empty| */
+
+                      mavlink_constrol.cpp   -->      //An example offboard control process via mavlink, definition
+                                          parse_commandline(argc, argv, uart_name, baudrate);
+                                          commands(Autopilot_Interface &api)；
+
+                // --------------------------------------------------------------------------
+
+                // START OFFBOARD MODE
+
+                // --------------------------------------------------------------------------
+
+                api.enable_offboard_control();
+
+                usleep(100); // give some time to let it sink in
+
+                // now the autopilot is accepting setpoint commands
+
+                // initialize command data strtuctures
+
+                mavlink_set_position_target_local_ned_t sp;
+
+                mavlink_set_position_target_local_ned_t ip = api.initial_position;
+
+                // autopilot_interface.h provides some helper functions to build the command
+
+                // Example 1 - Set Velocity
+
+                // set_velocity( -1.0 , // [m/s]
+
+                // -1.0 , // [m/s]
+
+                // 0.0 , // [m/s]
+
+                // sp );
+
+                // Example 2 - Set Position
+
+                set_position( ip.x - 5.0 , // [m]
+
+                ip.y - 5.0 , // [m]
+
+                ip.z , // [m]
+
+                sp );
+
+                // Example 1.2 - Append Yaw Command
+
+                set_yaw( ip.yaw , // [rad]
+
+                sp );
+
+                // SEND THE COMMAND
+
+                api.update_setpoint(sp);
+
+                // NOW pixhawk will try to move
+
+                // Wait for 8 seconds, check position
+
+                for (int i=0; i < 8; i++)
+
+                {
+
+                mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
+
+                printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
+
+                sleep(1);
+
+                }
+
+                printf("\n");
+
+                // --------------------------------------------------------------------------
+
+                // STOP OFFBOARD MODE
+
+                // --------------------------------------------------------------------------
+
+                api.disable_offboard_control();
+
+
+                // now pixhawk isn't listening to setpoint commands
+
+                // --------------------------------------------------------------------------
+
+                // GET A MESSAGE
+
+                // --------------------------------------------------------------------------
+
+                // copy current messages
+
+                Mavlink_Messages messages = api.current_messages;
+
+                // local position in ned frame
+
+                mavlink_local_position_ned_t pos = messages.local_position_ned;
+
+                printf("Got message LOCAL_POSITION_NED (spec: https://pixhawk.ethz.ch/mavlink/#LOCAL_POSITION_NED)\n");
+
+                printf(" pos (NED): %f %f %f (m)\n", pos.x, pos.y, pos.z );
+
+                // hires imu
+
+                mavlink_highres_imu_t imu = messages.highres_imu;
+
+                printf("Got message HIGHRES_IMU (spec: https://pixhawk.ethz.ch/mavlink/#HIGHRES_IMU)\n");
+
+                printf(" ap time: %llu \n", imu.time_usec);
+
+                printf(" acc (NED): % f % f % f (m/s^2)\n", imu.xacc , imu.yacc , imu.zacc );
+
+                printf(" gyro (NED): % f % f % f (rad/s)\n", imu.xgyro, imu.ygyro, imu.zgyro);
+
+                printf(" mag (NED): % f % f % f (Ga)\n" , imu.xmag , imu.ymag , imu.zmag );
+
+                printf(" baro: %f (mBar) \n" , imu.abs_pressure);
+
+                printf(" altitude: %f (m) \n" , imu.pressure_alt);
+
+                printf(" temperature: %f C \n" , imu.temperature );
+
+
+                了解了设置的框架，存在问题，如何获取想要的消息。首先要解决的是这里的并没有gps信息，该如何获得更完整的。
+
+                                             mavlink_set_position_target_local_ned_t initial_position;追踪ta
+                                           问题：
+                                                      http://mavlink.org/messages/common
+                                                     MAV_CMD_COMPONENT_ARM_DISARM
+                                                      

@@ -1,0 +1,60 @@
+mavros_gps
+
+与GPS相关的msgs
+rostopic type fix
+sensor_msgs/NavStaFix 用来表明设备的精度、纬度、高度、状态、质量与协方差
+关于fix的wiki :http://wiki.ros.org/gps_common
+gps_common defines two common messages for GPS drivers to output: gps_common/GPSFix and gps_common/GPSStatus.
+fix (sensor_msgs/NavSatFix) for GPS measurement and status
+
+与mavros相关的topic，这里关注和global _position有关的输出：
+
+    /mavros/global_position/global
+    /mavros/global_position/local
+    /mavros/global_position/raw/fix
+    /mavros/global_position/raw/gps_vel
+
+而在mavros中:查看gps的fix信息
+
+    rostopic type /mavros/global_position/raw/fix
+    sensor_msgs/NavSatFix
+
+    rostopic echo /mavros/global_position/raw/fix
+    header:
+      seq: 1522
+      stamp:
+        secs: 1517037182
+        nsecs: 839415136
+      frame_id: base_link
+    status:
+      status: 0
+      service: 1
+    latitude: 22.9393309
+    longitude: 113.8845461
+    altitude: 62.1686098228
+    position_covariance: [0.8099999570846563, 0.0, 0.0, 0.0, 0.8099999570846563, 0.0, 0.0, 0.0, 3.2399998283386253]
+    position_covariance_type: 1
+
+在mavros节点启动的时候主要是做了这一步处理：http://wiki.ros.org/mavros/Plugins
+         raw_fix_pub = gp_nh.advertise<sensor_msgs::NavSatFix>("raw/fix", 10);
+         用于输出fix信息
+         raw_vel_pub = gp_nh.advertise<geometry_msgs::TwistStamped>("raw/gps_vel", 10);
+         用于输出速度的信息
+mavros中接收的mavlink::common::msg::GPS_RAW_INT &raw_gps 会被转化成ros中的fix格式
+调用函数fill_lla(raw_gps, fix);
+         inline void fill_lla(MsgT &msg, sensor_msgs::NavSatFix::Ptr fix)
+    {
+        fix->latitude = msg.lat / 1E7;        // deg
+        fix->longitude = msg.lon / 1E7;       // deg
+        fix->altitude = msg.alt / 1E3 + m_uas->geoid_to_ellipsoid_height(fix);    // in meters
+    }
+         void handle_gps_raw_int(const mavlink::mavlink_message_t *msg, mavlink::common::msg::GPS_RAW_INT &raw_gps)
+产生GPS的信号来源  mavlink::common::msg::GPS_RAW_INT &raw_gps 
+
+
+问题：
+直接进行mavlink、msp的移植
+
+
+
+
