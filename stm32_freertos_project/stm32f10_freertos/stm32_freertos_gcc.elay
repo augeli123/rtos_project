@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<EmBitz_layout_file>
+	<ActiveTarget name="Release" />
+	<File name="freertos_core\include\FreeRTOS.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2599" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="freertos_core\include\portable.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2708" topLine="38" />
+		</Cursor>
+	</File>
+	<File name="freertos_core\include\queue.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="41812" topLine="1218" />
+		</Cursor>
+	</File>
+	<File name="freertos_core\include\task.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="28722" topLine="676" />
+		</Cursor>
+	</File>
+	<File name="freertos_core\tasks.c" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="92738" topLine="2491" />
+		</Cursor>
+	</File>
+	<File name="freertos_core\timers.c" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="10485" topLine="750" />
+		</Cursor>
+	</File>
+	<File name="inc\stm32f10x.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="8349" />
+		</Cursor>
+	</File>
+	<File name="inc\stm32f10x_conf.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="49" />
+		</Cursor>
+	</File>
+	<File name="inc\system_stm32f10x.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="70" />
+		</Cursor>
+	</File>
+	<File name="SPL\inc\stm32f10x_tim.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="18052" topLine="365" />
+		</Cursor>
+	</File>
+	<File name="SPL\src\stm32f10x_adc.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1146" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="src\FreeRTOSConfig.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2032" topLine="84" />
+		</Cursor>
+	</File>
+	<File name="src\main.c" open="1" top="1" tabpos="6" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2297" topLine="265" />
+		</Cursor>
+	</File>
+	<File name="src\procto.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4033" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\procto.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="83" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\pwm_output.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1889" topLine="22" />
+		</Cursor>
+	</File>
+	<File name="src\pwm_output.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="89" topLine="0" />
+		</Cursor>
+	</File>
+</EmBitz_layout_file>
