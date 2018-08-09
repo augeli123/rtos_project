@@ -153,7 +153,7 @@ static void mcpwm_example_config()
     pwm_config_1.cmpr_b = 0;    //duty cycle of PWMxb = 0
     pwm_config_1.counter_mode = MCPWM_UP_COUNTER;
     pwm_config_1.duty_mode = MCPWM_DUTY_MODE_0;
-    mcpwm_init(MCPWM_UNIT_1, MCPWM_TIMER_0, &pwm_config_1);    //Configure PWM0A & PWM0B with above settings  
+    mcpwm_init(MCPWM_UNIT_1, MCPWM_TIMER_1,&pwm_config_1);    //Configure PWM0A & PWM0B with above settings  
 }
 static void mcpwm_example_control()
 {
@@ -161,18 +161,18 @@ static void mcpwm_example_control()
     mcpwm_example_config();
     printf("set duty cycle  of each operator\n");
     mcpwm_set_duty(MCPWM_UNIT_0,MCPWM_TIMER_0, MCPWM_OPR_A, 50);
-    mcpwm_set_duty(MCPWM_UNIT_1,MCPWM_TIMER_0, MCPWM_OPR_A, 50);
+    mcpwm_set_duty(MCPWM_UNIT_1,MCPWM_TIMER_1, MCPWM_OPR_A, 50);
     //set duty cycle in %(i.e for 62.3% duty cycle, duty = 62.3) of each operator
     vTaskDelay(2000/ portTICK_PERIOD_MS);
     printf("now the frequency of PWM0A is %d \n" ,mcpwm_get_frequency(MCPWM_UNIT_0,MCPWM_TIMER_0));
-    printf("now the frequency of PWM1A is %d \n" ,mcpwm_get_frequency(MCPWM_UNIT_1,MCPWM_TIMER_0));
+    printf("now the frequency of PWM1A is %d \n" ,mcpwm_get_frequency(MCPWM_UNIT_1,MCPWM_TIMER_1));
     mcpwm_set_frequency(MCPWM_UNIT_0,  MCPWM_TIMER_0, 700);
     mcpwm_start(MCPWM_UNIT_0,  MCPWM_TIMER_0);
-    mcpwm_set_frequency(MCPWM_UNIT_1,  MCPWM_TIMER_0, 600);
-    mcpwm_start(MCPWM_UNIT_1,  MCPWM_TIMER_0);
+    mcpwm_set_frequency(MCPWM_UNIT_1,  MCPWM_TIMER_1, 600);
+    mcpwm_start(MCPWM_UNIT_1,  MCPWM_TIMER_1);
     vTaskDelay(4000/ portTICK_PERIOD_MS);
     printf("now the frequency of PWM0A is %d \n" ,mcpwm_get_frequency(MCPWM_UNIT_0,MCPWM_TIMER_0));
-    printf("now the frequency of PWM1A is %d \n" ,mcpwm_get_frequency(MCPWM_UNIT_1,MCPWM_TIMER_0));
+    printf("now the frequency of PWM1A is %d \n" ,mcpwm_get_frequency(MCPWM_UNIT_1,MCPWM_TIMER_1));
 	printf("channel 0 at %d freq\n",ledc_get_freq(LEDC_HIGH_SPEED_MODE, LEDC_TIMER_0));
     printf("channel 1 at %d freq\n",ledc_get_freq(LEDC_HIGH_SPEED_MODE, LEDC_TIMER_1));
     printf("channel 2 at %d freq\n",ledc_get_freq(LEDC_HIGH_SPEED_MODE, LEDC_TIMER_2));

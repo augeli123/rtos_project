@@ -59,7 +59,7 @@ static void ledc_example_channel_config()
 };
     ledc_channel_config(&ledc_channel_0);
     ledc_channel_config_t ledc_channel_1={
-    .channel= LEDC_CHANNEL_2,
+    .channel= LEDC_CHANNEL_1,
     .duty=0,
     .gpio_num= LEDC_IO_2,
     .speed_mode=LEDC_HIGH_SPEED_MODE,
