@@ -1,0 +1,23 @@
+模板：
+工程目录：
+	├── components
+│   └── my_comp
+│       ├── component.mk
+│       ├── include
+│       │   └── my_comp.h
+│       ├── Kconfig
+│       └── my_comp.c
+├── main
+│   ├── component.mk
+│   └── main.c
+├── makefile
+└── readme
+
+make flash 编译并烧录
+make monitor 启动监视窗口，查看串口信息
+ctrl + ] 关闭窗口 
+
+
+main.c为主文件
+compents下为各组件的src和inc 文件
+Kconfig 包含配置组件的设置
