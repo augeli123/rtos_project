@@ -18,6 +18,8 @@ static void task3(void *arg)
 	while(true)
 	{
 	//    printf("hello world!\n");
+	 printf("hello ,%s !\n",(const char *)arg);
+
 	//由于交互式设计
 		vTaskDelay(4000/portTICK_PERIOD_MS);
 	}
@@ -35,6 +37,7 @@ void app_main(void)
     
 	s1.SetFreq(700,500);
     s1.SetSignal(signal);
+	const   char * param="logic";
 
 	LED_Init();
 	LEDC_Init();
@@ -42,11 +45,11 @@ void app_main(void)
 	printf("LED will blink\n");
 	xTaskCreate(task1, //任务函数
 				"LED_Blink_Task",//任务名称
-				 1024,//任务堆栈大小
+				 2048,//任务堆栈大小
 				 NULL,//传递给任务函数的参数
 				 10,//任务优先级
 				 NULL);//任务句柄
-	xTaskCreate(task3,"hello_world_task",2048,NULL,8,NULL);
+	xTaskCreate(task3,"hello_world_task",2048,(void *)param,8,NULL);
 	xTaskCreate(task2, "PWM_LED_Task",3200,NULL,5,NULL);
 }
 /*TODO:

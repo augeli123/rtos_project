@@ -16,13 +16,13 @@ extern "C" {
 #endif
 void LEDC_Init();
 void LEDC_Duty_Set(float pulsewidth);
-void LEDC_Duty_4_Set(float pulse_0,float pulse_1,float pulse_2,float pulse_3);
+void LEDC_Duty_4_Set(float pulse_0,float pulse_1,float pulse_2,float pulse_3);//LEDC的四通道占空比设置，0.00f-1.00f
 void LEDC_Freq_Set(uint32_t freq_hz);
-void LEDC_Freq_4_Set(uint32_t freq_0,uint32_t freq_1,uint32_t freq_2,uint32_t freq_3);
+void LEDC_Freq_4_Set(uint32_t freq_0,uint32_t freq_1,uint32_t freq_2,uint32_t freq_3);//LEDC的四通道频率设置，1000代表1000hz
 
 void MCPWM_Init();
-void MCPWM_Duty_2_Set(float pulse_0,float pulse_1);
-void MCPWM_Freq_2_Set(uint32_t freq_0,uint32_t freq_1);
+void MCPWM_Duty_2_Set(float pulse_0,float pulse_1);//MCPWM的两通道占空比设置，0.00f-1.00f     0.01表示占空比10%
+void MCPWM_Freq_2_Set(uint32_t freq_0,uint32_t freq_1);//MCPWM的两通道频率设置
 #ifdef __cplusplus
 }
 #endif
