@@ -1,0 +1,18 @@
+menu "MY_COMP"
+config MY_COMP_ENABLE
+bool "Enable my_comp"
+default "y"
+
+#config ESP_WIFI_SSID
+ #   string "WiFi SSID"
+   # default "Inteagle_2.4G"
+  #  help
+   # SSID (network name) for the example to connect to.
+
+#config ESP_WIFI_PASSWORD
+ #   string "WiFi Password"
+   # default "inteagle@123"
+  #  help
+   # WiFi password (WPA or WPA2) for the example to use.
+
+endmenu

@@ -1,0 +1,15 @@
+my_gpio 包含了状态指示灯的配置，比较简单
+my_pwm  则是使用了esp32所带的LED Control模块产生单路PWM波，可以拓展成4路。
+		--添加了多灯的控制,使用LEDC和MCPWM最多可实现6路不同频率的灯控。
+SingleLed 则是使用C++语言提供了配置单灯PWM点亮的接口。其中线程错误，暂时无法以一定的signal发送PWM
+Todo: 
+wifi connection\web server
+
+/*
+    用于内部调用
+*/
+
+目前问题：
+	线程错误，寻找硬件定时方式
+	
+	
