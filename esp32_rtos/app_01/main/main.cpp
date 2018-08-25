@@ -38,7 +38,7 @@ void app_main(void)
 	s1.SetFreq(700,500);
     s1.SetSignal(signal);
 	const   char * param="logic";
-
+	TB6612_Init();
 	LED_Init();
 	LEDC_Init();
 	vTaskDelay(5000/portTICK_PERIOD_MS);
