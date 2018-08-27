@@ -3,11 +3,11 @@ static uint32_t level = 0;
 void TB6612_Init(void)
 {
 	gpio_set_direction(TB6612_AIN1,GPIO_MODE_OUTPUT);
-	gpio_set_level(TB6612_AIN1,1);
+	gpio_set_level(TB6612_AIN1,0);
     gpio_set_direction(TB6612_AIN2,GPIO_MODE_OUTPUT);
-    gpio_set_level(TB6612_AIN2,0);
+    gpio_set_level(TB6612_AIN2,1);
     gpio_set_direction(TB6612_STBY,GPIO_MODE_OUTPUT);
-    gpio_set_level(TB6612_STBY,1);
+    gpio_set_level(TB6612_STBY,0);
 }
 void LED_Init(void)
 {   

@@ -2,12 +2,14 @@
 #define MY_PWM_H
 #include "driver/ledc.h"
 #include "driver/mcpwm.h"
-#define LEDC_IO_0 (15)
-#define LEDC_IO_1 (32)
-#define LEDC_IO_2 (33)
-#define LEDC_IO_3 (34)
-#define  GPIO_PWM0A_OUT 35
-#define  GPIO_PWM1A_OUT 26
+//CH1-2 (32 33) CH5-6 (26 27) CH0 (15) 对于ledc来说，管脚号码大于33会出错
+#define LEDC_IO_0 GPIO_NUM_15 
+#define LEDC_IO_1 GPIO_NUM_32
+#define LEDC_IO_2 GPIO_NUM_33
+//#define LEDC_IO_3 GPIO_NUM_34
+#define LEDC_IO_3 GPIO_NUM_4
+#define  GPIO_PWM0A_OUT GPIO_NUM_27
+#define  GPIO_PWM1A_OUT GPIO_NUM_26
 //2^13=8192    %5=410  %10=819 25%=2048 50%=4096 %75=6144
 #define LEDC_TEST_DUTY         (410)
 #define MCPWM_TEST_DUTY        (50)
