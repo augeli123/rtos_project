@@ -14,7 +14,7 @@ xtensa_intr_asm.o: \
  /home/logic/esp_ws/esp-idf/components/esp32/include/xtensa/config/system.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/xtensa/xtruntime-frames.h \
  /home/logic/esp_ws/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/freertos/include/freertos/xtensa_config.h \
  /home/logic/esp_ws/esp-idf/components/freertos/include/freertos/xtensa_context.h
 
@@ -46,7 +46,7 @@ xtensa_intr_asm.o: \
 
 /home/logic/esp_ws/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 

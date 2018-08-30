@@ -10,7 +10,7 @@ spi_flash_rom_patch.o: \
  /home/logic/esp_ws/esp-idf/components/soc/esp32/include/soc/gpio_pins.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/rom/spi_flash.h \
  /home/logic/esp_ws/esp-idf/components/soc/esp32/include/soc/spi_reg.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/bootloader/../include/sdkconfig.h
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/bootloader/../include/sdkconfig.h
 
 /home/logic/esp_ws/esp-idf/components/esp32/include/rom/ets_sys.h:
 
@@ -32,5 +32,5 @@ spi_flash_rom_patch.o: \
 
 /home/logic/esp_ws/esp-idf/components/soc/esp32/include/soc/spi_reg.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/bootloader/../include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/bootloader/../include/sdkconfig.h:
 /home/logic/esp_ws/esp-idf/components/spi_flash/./spi_flash_rom_patch.c:

@@ -1,5 +1,5 @@
 int_wdt.o: /home/logic/esp_ws/esp-idf/components/esp32/int_wdt.c \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/stdint.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/machine/_default_types.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/features.h \
@@ -90,7 +90,7 @@ int_wdt.o: /home/logic/esp_ws/esp-idf/components/esp32/int_wdt.c \
  /home/logic/esp_ws/esp-idf/components/soc/esp32/include/soc/periph_defs.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/esp_int_wdt.h
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/newlib/include/stdint.h:
 

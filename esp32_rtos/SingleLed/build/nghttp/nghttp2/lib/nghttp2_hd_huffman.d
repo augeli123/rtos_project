@@ -31,7 +31,7 @@ nghttp2/lib/nghttp2_hd_huffman.o: \
  /home/logic/esp_ws/esp-idf/components/newlib/include/stdint.h \
  /home/logic/esp_ws/esp-idf/components/nghttp/port/include/nghttp2/nghttp2ver.h \
  /home/logic/esp_ws/esp-idf/components/newlib/platform_include/assert.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/assert.h \
  /home/logic/esp_ws/esp-idf/components/nghttp/nghttp2/lib/nghttp2_hd.h \
  /home/logic/esp_ws/esp-idf/components/nghttp/nghttp2/lib/nghttp2_buf.h \
@@ -101,7 +101,7 @@ nghttp2/lib/nghttp2_hd_huffman.o: \
 
 /home/logic/esp_ws/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/newlib/include/assert.h:
 

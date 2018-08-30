@@ -1,8 +1,4 @@
 #include"SingleLedConfig.h"
-static uint8_t _signal[16]={0};
-static uint8_t _freqhigh=0 , _freqmid=0 , _freqlow=0 ,_freqcur=1000;
-float _duty =0;
-float _time =1; //设置信号交替的时间 
 void TB6612_Config(void)
 {
 	 //TB6612驱动板的的配置
@@ -35,24 +31,35 @@ void ledc_example_gpio_config()
     ledc_channel_config(&ledc_channel_0);
 }
 
-//用户调用函数
-/*void SetSignal(const uint8_t signal[16])
+//用于给结构体赋值
+/*
+	使用方法：SingleLed s1;
+	SetTime(&s1,0.02);  表示1/50
+	SetFreq(&s1,500,650,800);
+	SetSignal(&s1,signal);
+*/
+void SetTime(SingleLedInfo * s1,const float time)//用于设置较为固定的
+{
+	s1->_time=time;
+}
+void SetSignal(SingleLedInfo * s1,const uint8_t signal[16])
 {
 	 for(int i=0;i<16;i++)
 	{
-		_signal[i]=signal[i];
+		s1->_signal[i]=signal[i];
 	}
 }
-void SetFreq(const int freqhigh,const int freqmid,const int freqlow)
+//用来给灯设置三种频率
+void SetFreq(SingleLedInfo * s1,const int freqlow,const int freqmid,const int freqhigh)
 {
-	_freqhigh=freqhigh;
-	_freqmid=freqmid;
-	_freqlow=freqlow;
-}*/
+	s1->_freq[0]=freqlow;
+	s1->_freq[1]=freqmid;
+	s1->_freq[2]=freqhigh;
+}
+
+
 void SetPwm(const int freq_hz)
 {	//如果需要单灯以固定频率闪烁，调用此函数
-	//_freqcur=freq_hz;a
-//	ledc_example_timer_config(freq_hz);
 	ledc_set_freq(LEDC_HIGH_SPEED_MODE, LEDC_TIMER_0, freq_hz);
 /*
      One of options is to call ledc_set_freq(). There is a corresponding function ledc_get_freq() to check what frequency is currently set.
@@ -62,7 +69,6 @@ void SetPwm(const int freq_hz)
 */	
 	
 	ledc_example_gpio_config();
-//   printf("channel 0 at %d freq\n",ledc_get_freq(LEDC_HIGH_SPEED_MODE, LEDC_TIMER_0));
 }
 void SetDuty(const float duty) //专门用于占空比设置
 {
@@ -85,4 +91,22 @@ void SendPwmStream(const float time,const uint8_t signal[16])
 			}
    		vTaskDelay(xDelay);
 	}
+}
+void SendStream(const SingleLedInfo * s1)
+{
+	const TickType_t xDelay =(1000/portTICK_PERIOD_MS)*(s1->_time);//例如_time = 1/50=0.02
+    for(int i=0;i<16;i++)
+    {
+        SetDuty(0);
+        vTaskDelay(xDelay);
+        if(s1->_signal[i]==0){
+        SetPwm(s1->_freq[0]);
+         }else if(s1->_signal[i]==1) {
+        SetPwm(s1->_freq[1]);
+         }else{
+        SetPwm(s1->_freq[2]);
+            }
+        vTaskDelay(xDelay);
+    }
+
 }

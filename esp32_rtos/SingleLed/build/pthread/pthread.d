@@ -35,7 +35,7 @@ pthread.o: /home/logic/esp_ws/esp-idf/components/pthread/pthread.c \
  /home/logic/esp_ws/esp-idf/components/newlib/include/stdio.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/stdio.h \
  /home/logic/esp_ws/esp-idf/components/newlib/platform_include/assert.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/stdlib.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/machine/stdlib.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/alloca.h \
@@ -172,7 +172,7 @@ pthread.o: /home/logic/esp_ws/esp-idf/components/pthread/pthread.c \
 
 /home/logic/esp_ws/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/newlib/include/stdlib.h:
 

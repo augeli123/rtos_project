@@ -17,7 +17,7 @@ dport_access.o: \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/lock.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/cdefs.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/string.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/esp_attr.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/esp_err.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/stdio.h \
@@ -130,7 +130,7 @@ dport_access.o: \
 
 /home/logic/esp_ws/esp-idf/components/newlib/include/sys/string.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/esp32/include/esp_attr.h:
 

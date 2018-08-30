@@ -1,6 +1,6 @@
 pm_trace.o: /home/logic/esp_ws/esp-idf/components/esp32/pm_trace.c \
  /home/logic/esp_ws/esp-idf/components/esp32/pm_trace.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/driver/include/driver/gpio.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/esp_err.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/stdint.h \
@@ -44,7 +44,7 @@ pm_trace.o: /home/logic/esp_ws/esp-idf/components/esp32/pm_trace.c \
 
 /home/logic/esp_ws/esp-idf/components/esp32/pm_trace.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/driver/include/driver/gpio.h:
 

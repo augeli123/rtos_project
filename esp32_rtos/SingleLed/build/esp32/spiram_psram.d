@@ -1,6 +1,6 @@
 spiram_psram.o: \
  /home/logic/esp_ws/esp-idf/components/esp32/spiram_psram.c \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/string.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/_ansi.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/newlib.h \
@@ -76,7 +76,7 @@ spiram_psram.o: \
  /home/logic/esp_ws/esp-idf/components/soc/esp32/include/soc/spi_struct.h \
  /home/logic/esp_ws/esp-idf/components/driver/include/driver/periph_ctrl.h
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/newlib/include/string.h:
 

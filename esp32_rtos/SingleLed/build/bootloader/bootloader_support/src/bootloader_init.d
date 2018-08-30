@@ -2,7 +2,7 @@ src/bootloader_init.o: \
  /home/logic/esp_ws/esp-idf/components/bootloader_support/src/bootloader_init.c \
  /home/logic/esp_ws/esp-idf/components/esp32/include/esp_attr.h \
  /home/logic/esp_ws/esp-idf/components/log/include/esp_log.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/bootloader/../include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/bootloader/../include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/logic/esp_ws/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/esp_assert.h \
@@ -62,7 +62,7 @@ src/bootloader_init.o: \
 
 /home/logic/esp_ws/esp-idf/components/log/include/esp_log.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/bootloader/../include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/bootloader/../include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/esp32/include/rom/ets_sys.h:
 

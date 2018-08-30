@@ -13,7 +13,7 @@ src/bootloader_clock.o: \
  /home/logic/esp_ws/esp-idf/components/soc/esp32/include/soc/dport_reg.h \
  /home/logic/esp_ws/esp-idf/components/soc/esp32/include/soc/dport_access.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/esp_dport_access.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/bootloader/../include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/bootloader/../include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/soc/esp32/include/soc/uart_reg.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/xtensa/xtruntime.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/xtensa/config/core.h \
@@ -54,7 +54,7 @@ src/bootloader_clock.o: \
 
 /home/logic/esp_ws/esp-idf/components/esp32/include/esp_dport_access.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/bootloader/../include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/bootloader/../include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/soc/esp32/include/soc/uart_reg.h:
 

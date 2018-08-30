@@ -1,6 +1,6 @@
 src/secure_boot_signatures.o: \
  /home/logic/esp_ws/esp-idf/components/bootloader_support/src/secure_boot_signatures.c \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/bootloader/../include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/bootloader/../include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/bootloader_support/include_bootloader/bootloader_flash.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/esp_err.h \
  /home/logic/esp_ws/esp-idf/components/spi_flash/include/esp_spi_flash.h \
@@ -19,7 +19,7 @@ src/secure_boot_signatures.o: \
  /home/logic/esp_ws/esp-idf/components/micro-ecc/micro-ecc/uECC.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/rom/sha.h
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/bootloader/../include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/bootloader/../include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/bootloader_support/include_bootloader/bootloader_flash.h:
 

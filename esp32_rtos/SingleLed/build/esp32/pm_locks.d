@@ -27,7 +27,7 @@ pm_locks.o: /home/logic/esp_ws/esp-idf/components/esp32/pm_locks.c \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/sched.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/stdio.h \
  /home/logic/esp_ws/esp-idf/components/newlib/platform_include/assert.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/assert.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/esp32/pm.h \
  /home/logic/esp_ws/esp-idf/components/soc/esp32/include/soc/rtc.h \
@@ -139,7 +139,7 @@ pm_locks.o: /home/logic/esp_ws/esp-idf/components/esp32/pm_locks.c \
 
 /home/logic/esp_ws/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/newlib/include/assert.h:
 

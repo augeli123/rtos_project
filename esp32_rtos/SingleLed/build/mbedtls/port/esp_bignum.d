@@ -24,7 +24,7 @@ port/esp_bignum.o: \
  /home/logic/esp_ws/esp-idf/components/newlib/include/machine/malloc.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/limits.h \
  /home/logic/esp_ws/esp-idf/components/newlib/platform_include/assert.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/stdlib.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/machine/stdlib.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/alloca.h \
@@ -146,7 +146,7 @@ port/esp_bignum.o: \
 
 /home/logic/esp_ws/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/newlib/include/stdlib.h:
 

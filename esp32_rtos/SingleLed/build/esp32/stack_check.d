@@ -1,5 +1,5 @@
 stack_check.o: /home/logic/esp_ws/esp-idf/components/esp32/stack_check.c \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/esp_system.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/stdint.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/machine/_default_types.h \
@@ -58,7 +58,7 @@ stack_check.o: /home/logic/esp_ws/esp-idf/components/esp32/stack_check.c \
  /home/logic/esp_ws/esp-idf/components/esp32/include/xtensa/config/core-matmap.h \
  /home/logic/esp_ws/esp-idf/components/soc/esp32/include/soc/touch_channel.h
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/esp32/include/esp_system.h:
 

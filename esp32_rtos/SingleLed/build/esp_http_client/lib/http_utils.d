@@ -25,7 +25,7 @@ lib/http_utils.o: \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/sched.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/stdio.h \
  /home/logic/esp_ws/esp-idf/components/newlib/platform_include/assert.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/assert.h \
  /home/logic/esp_ws/esp-idf/components/esp_http_client/lib/include/http_utils.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/time.h
@@ -80,7 +80,7 @@ lib/http_utils.o: \
 
 /home/logic/esp_ws/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/newlib/include/assert.h:
 

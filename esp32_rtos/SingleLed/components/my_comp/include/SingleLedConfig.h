@@ -9,13 +9,22 @@
 #define TB6612_AIN1 GPIO_NUM_16        	
 #define TB6612_AIN2 GPIO_NUM_4
 #define TB6612_STBY GPIO_NUM_17
+typedef struct _SingleLedInfo{
+	float _time;//信号时间间隔
+	int	_freq[3];//信号对应的三种频率
+	uint8_t _signal[16];//信号
+}SingleLedInfo;
+
+
 void TB6612_Config();
 void ledc_example_timer_config();
 void ledc_example_gpio_config();
-//void SetSignal(const uint8_t signal[16]);
-//void SetFreq(const int freqhigh,const int freqmid,const int freqlow);
+void SetTime(SingleLedInfo *s1,const float time);
+void SetFreq(SingleLedInfo *s1,const int freqlow,const int freqmid,const int freqhigh);
+void SetSignal(SingleLedInfo *s1,const uint8_t signal[16]);
 void SetPwm(const int freq_hz);
 void SetDuty(const float duty);
 void SendPwmStream(const float time,const uint8_t signal[16]);
+void SendStream(const SingleLedInfo * s1 );
 #endif
         

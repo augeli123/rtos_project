@@ -1,6 +1,6 @@
 SingleLedConfig.o: \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/components/my_comp/SingleLedConfig.c \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/components/my_comp/include/SingleLedConfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/components/my_comp/SingleLedConfig.c \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/components/my_comp/include/SingleLedConfig.h \
  /home/logic/esp_ws/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/reent.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/_ansi.h \
@@ -16,7 +16,7 @@ SingleLedConfig.o: \
  /home/logic/esp_ws/esp-idf/components/newlib/include/stdint.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/logic/esp_ws/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/freertos/include/freertos/xtensa_config.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/xtensa/hal.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/xtensa/config/core.h \
@@ -89,7 +89,7 @@ SingleLedConfig.o: \
  /home/logic/esp_ws/esp-idf/components/soc/esp32/include/soc/uart_reg.h \
  /home/logic/esp_ws/esp-idf/components/soc/esp32/include/soc/periph_defs.h
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/components/my_comp/include/SingleLedConfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/components/my_comp/include/SingleLedConfig.h:
 
 /home/logic/esp_ws/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
 
@@ -121,7 +121,7 @@ SingleLedConfig.o: \
 
 /home/logic/esp_ws/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 
@@ -264,4 +264,4 @@ SingleLedConfig.o: \
 /home/logic/esp_ws/esp-idf/components/soc/esp32/include/soc/uart_reg.h:
 
 /home/logic/esp_ws/esp-idf/components/soc/esp32/include/soc/periph_defs.h:
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/components/my_comp/./SingleLedConfig.c:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/components/my_comp/./SingleLedConfig.c:

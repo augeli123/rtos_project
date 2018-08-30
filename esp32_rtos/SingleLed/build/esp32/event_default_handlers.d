@@ -27,7 +27,7 @@ event_default_handlers.o: \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/sched.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/stdio.h \
  /home/logic/esp_ws/esp-idf/components/newlib/platform_include/assert.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/assert.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/esp_wifi.h \
  /home/logic/esp_ws/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
@@ -184,7 +184,7 @@ event_default_handlers.o: \
 
 /home/logic/esp_ws/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/newlib/include/assert.h:
 

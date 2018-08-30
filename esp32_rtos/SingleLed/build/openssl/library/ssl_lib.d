@@ -12,7 +12,7 @@ library/ssl_lib.o: \
  /home/logic/esp_ws/esp-idf/components/openssl/include/internal/ssl_cert.h \
  /home/logic/esp_ws/esp-idf/components/openssl/include/internal/ssl_dbg.h \
  /home/logic/esp_ws/esp-idf/components/openssl/include/platform/ssl_opt.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/openssl/include/platform/ssl_port.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/esp_types.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/cdefs.h \
@@ -70,7 +70,7 @@ library/ssl_lib.o: \
 
 /home/logic/esp_ws/esp-idf/components/openssl/include/platform/ssl_opt.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/openssl/include/platform/ssl_port.h:
 

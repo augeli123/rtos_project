@@ -1,4 +1,4 @@
-main.o: /home/logic/git_ws/uav_project/esp32_rtos/app_test/main/main.c \
+main.o: /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/main/main.c \
  /home/logic/esp_ws/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/reent.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/_ansi.h \
@@ -14,7 +14,7 @@ main.o: /home/logic/git_ws/uav_project/esp32_rtos/app_test/main/main.c \
  /home/logic/esp_ws/esp-idf/components/newlib/include/stdint.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/logic/esp_ws/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/freertos/include/freertos/xtensa_config.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/xtensa/hal.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/xtensa/config/core.h \
@@ -79,7 +79,7 @@ main.o: /home/logic/git_ws/uav_project/esp32_rtos/app_test/main/main.c \
  /home/logic/esp_ws/esp-idf/components/newlib/include/limits.h \
  /home/logic/esp_ws/esp-idf/components/freertos/include/freertos/list.h \
  /home/logic/esp_ws/esp-idf/components/freertos/include/freertos/queue.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/components/my_comp/include/SingleLedConfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/components/my_comp/include/SingleLedConfig.h \
  /home/logic/esp_ws/esp-idf/components/driver/include/driver/ledc.h \
  /home/logic/esp_ws/esp-idf/components/driver/include/driver/periph_ctrl.h \
  /home/logic/esp_ws/esp-idf/components/soc/esp32/include/soc/dport_reg.h \
@@ -119,7 +119,7 @@ main.o: /home/logic/git_ws/uav_project/esp32_rtos/app_test/main/main.c \
 
 /home/logic/esp_ws/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 
@@ -249,7 +249,7 @@ main.o: /home/logic/git_ws/uav_project/esp32_rtos/app_test/main/main.c \
 
 /home/logic/esp_ws/esp-idf/components/freertos/include/freertos/queue.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/components/my_comp/include/SingleLedConfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/components/my_comp/include/SingleLedConfig.h:
 
 /home/logic/esp_ws/esp-idf/components/driver/include/driver/ledc.h:
 
@@ -266,4 +266,4 @@ main.o: /home/logic/git_ws/uav_project/esp32_rtos/app_test/main/main.c \
 /home/logic/esp_ws/esp-idf/components/soc/esp32/include/soc/periph_defs.h:
 
 /home/logic/esp_ws/esp-idf/components/esp32/include/esp_task_wdt.h:
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/main/./main.c:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/main/./main.c:

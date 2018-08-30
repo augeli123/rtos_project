@@ -18,7 +18,7 @@ heap_trace.o: /home/logic/esp_ws/esp-idf/components/heap/heap_trace.c \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/syslimits.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/machine/endian.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/machine/param.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/heap/include/esp_heap_trace.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/stdint.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/_intsup.h \
@@ -126,7 +126,7 @@ heap_trace.o: /home/logic/esp_ws/esp-idf/components/heap/heap_trace.c \
 
 /home/logic/esp_ws/esp-idf/components/newlib/include/machine/param.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/heap/include/esp_heap_trace.h:
 

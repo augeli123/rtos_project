@@ -22,7 +22,7 @@ bt.o: /home/logic/esp_ws/esp-idf/components/bt/bt.c \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/stdio.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/string.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/string.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/heap/include/esp_heap_caps.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/stdint.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/_intsup.h \
@@ -150,7 +150,7 @@ bt.o: /home/logic/esp_ws/esp-idf/components/bt/bt.c \
 
 /home/logic/esp_ws/esp-idf/components/newlib/include/sys/string.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/heap/include/esp_heap_caps.h:
 

@@ -31,7 +31,7 @@ pm_esp32.o: /home/logic/esp_ws/esp-idf/components/esp32/pm_esp32.c \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/sched.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/stdio.h \
  /home/logic/esp_ws/esp-idf/components/newlib/platform_include/assert.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/assert.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/esp_pm.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/esp32/pm.h \
@@ -162,7 +162,7 @@ pm_esp32.o: /home/logic/esp_ws/esp-idf/components/esp32/pm_esp32.c \
 
 /home/logic/esp_ws/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/newlib/include/assert.h:
 

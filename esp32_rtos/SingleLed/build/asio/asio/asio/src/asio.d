@@ -3,7 +3,7 @@ asio/asio/src/asio.o: \
  /home/logic/esp_ws/esp-idf/components/asio/asio/asio/include/asio/impl/src.hpp \
  /home/logic/esp_ws/esp-idf/components/asio/asio/asio/include/asio/detail/config.hpp \
  /home/logic/esp_ws/esp-idf/components/asio/port/include/esp_asio_config.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/asio/asio/asio/include/asio/impl/error.ipp \
  /home/logic/esp_ws/esp-idf/components/asio/asio/asio/include/asio/error.hpp \
  /home/logic/esp_ws/esp-idf/components/asio/asio/asio/include/asio/error_code.hpp \
@@ -323,7 +323,7 @@ asio/asio/src/asio.o: \
 
 /home/logic/esp_ws/esp-idf/components/asio/port/include/esp_asio_config.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/asio/asio/asio/include/asio/impl/error.ipp:
 

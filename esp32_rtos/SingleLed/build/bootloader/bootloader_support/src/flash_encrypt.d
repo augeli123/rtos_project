@@ -3,7 +3,7 @@ src/flash_encrypt.o: \
  /home/logic/esp_ws/esp-idf/components/bootloader_support/include_bootloader/bootloader_flash.h \
  /home/logic/esp_ws/esp-idf/components/esp32/include/esp_err.h \
  /home/logic/esp_ws/esp-idf/components/spi_flash/include/esp_spi_flash.h \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/bootloader/../include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/bootloader/../include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h \
  /home/logic/esp_ws/esp-idf/components/bootloader_support/include/esp_image_format.h \
  /home/logic/esp_ws/esp-idf/components/bootloader_support/include/esp_flash_partitions.h \
@@ -44,7 +44,7 @@ src/flash_encrypt.o: \
 
 /home/logic/esp_ws/esp-idf/components/spi_flash/include/esp_spi_flash.h:
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/bootloader/../include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/bootloader/../include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/bootloader_support/include_bootloader/bootloader_random.h:
 

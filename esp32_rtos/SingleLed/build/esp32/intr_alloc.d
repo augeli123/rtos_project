@@ -1,5 +1,5 @@
 intr_alloc.o: /home/logic/esp_ws/esp-idf/components/esp32/intr_alloc.c \
- /home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h \
+ /home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/stdint.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/machine/_default_types.h \
  /home/logic/esp_ws/esp-idf/components/newlib/include/sys/features.h \
@@ -83,7 +83,7 @@ intr_alloc.o: /home/logic/esp_ws/esp-idf/components/esp32/intr_alloc.c \
  /home/logic/esp_ws/esp-idf/components/log/include/esp_log.h \
  /home/logic/esp_ws/esp-idf/components/log/include/esp_log_internal.h
 
-/home/logic/git_ws/uav_project/esp32_rtos/app_test/build/include/sdkconfig.h:
+/home/logic/git_ws/uav_project/esp32_rtos/SingleLed/build/include/sdkconfig.h:
 
 /home/logic/esp_ws/esp-idf/components/newlib/include/stdint.h:
 
